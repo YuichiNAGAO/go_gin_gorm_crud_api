@@ -1,21 +1,14 @@
 package main
 
 import (
-	"log"
 	"net/http"
 
+	"github.com/YuichiNAGAO/go_gin_gorm_crud_api/initializers"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 func init() {
-	// .env fileをloadし、環境変数として扱えるようにする
-	err := godotenv.Load()
-
-	if err != nil {
-		log.Fatalln("Error loading .env file")
-	}
-
+	initializers.LoadEnvVariables()
 }
 
 func main() {
