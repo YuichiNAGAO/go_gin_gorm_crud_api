@@ -1,10 +1,22 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
+
+func init() {
+	// .env fileをloadし、環境変数として扱えるようにする
+	err := godotenv.Load()
+
+	if err != nil {
+		log.Fatalln("Error loading .env file")
+	}
+
+}
 
 func main() {
 	r := gin.Default()
