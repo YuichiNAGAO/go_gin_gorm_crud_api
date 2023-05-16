@@ -8,14 +8,18 @@ import (
 
 func PostsCreate(c *gin.Context) {
 	// リクエストボディを受け取る
+	var body struct {
+		Title string
+		Body  string
+	}
+	c.Bind(&body)
 
 	// ポストを作成する
-
 	var post models.Post
-	post.Body = "test"
-	post.Title = "test"
 
-	// c.BindJSON(&post)
+	post.Body = body.Body
+	post.Title = body.Title
+
 	result := initializers.DB.Create(&post)
 
 	if result.Error != nil {
