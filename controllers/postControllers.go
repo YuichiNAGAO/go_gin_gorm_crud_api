@@ -41,3 +41,15 @@ func PostsIndex(c *gin.Context) {
 
 	c.JSON(200, gin.H{"posts": posts})
 }
+
+func PostsShow(c *gin.Context) {
+	var post models.Post
+	result := initializers.DB.First(&post, c.Param("id"))
+
+	if result.Error != nil {
+		c.JSON(500, gin.H{"error": result.Error})
+		return
+	}
+
+	c.JSON(200, post)
+}
