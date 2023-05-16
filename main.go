@@ -22,6 +22,10 @@ func main() {
 	r.GET("/posts/:id", controllers.PostsShow)
 
 	r.PUT("/posts/:id", controllers.PostsUpdate)
+	// curl -X PUT -H "Content-Type: application/json" -d '{"title":"タイトルああああ","body":"本文だよ"}' http://localhost:3000/posts/1
+
+	r.DELETE("/posts/:id", controllers.PostsDelete)
+	// curl -X DELETE http://localhost:3000/posts/5
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

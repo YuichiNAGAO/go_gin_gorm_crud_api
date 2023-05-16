@@ -83,3 +83,13 @@ func PostsUpdate(c *gin.Context) {
 
 	c.JSON(200, post)
 }
+
+func PostsDelete(c *gin.Context) {
+	result := initializers.DB.Delete(&models.Post{}, c.Param("id"))
+	if result.Error != nil {
+		c.JSON(500, gin.H{"error": result.Error})
+		return
+	}
+
+	c.Status(204)
+}
